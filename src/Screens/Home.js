@@ -918,7 +918,7 @@ function Home({ navigation }) {
           <ScrollView horizontal>
             {arr
               .filter((it) => it.year == count)
-              .map((item) => (
+              .map((item, index) => (
                 <TouchableOpacity
                   onPress={() => {
                     navigation.navigate("result", {
@@ -931,7 +931,7 @@ function Home({ navigation }) {
                     });
                   }}
                 >
-                  <View key={item.date} style={styles.card}>
+                  <View key={item.index} style={styles.card}>
                     <Text style={styles.info}>Team 1 :{item.team_1}</Text>
                     <Text style={styles.info}>Team 2 :{item.team_2}</Text>
                     <Text style={styles.info}>Venue :{item.Venue}</Text>
@@ -1077,7 +1077,7 @@ function Home({ navigation }) {
               </View>
             </View>
           </ScrollView>
-          <View style={{ flexDirection: "row-reverse" }}>
+          {/* <View style={{ flexDirection: "row-reverse" }}>
             <TouchableOpacity>
               <AntDesign
                 name="pluscircle"
@@ -1086,7 +1086,7 @@ function Home({ navigation }) {
                 style={{ paddingRight: wd * 0.04, paddingBottom: ht * 0.01 }}
               />
             </TouchableOpacity>
-          </View>
+          </View> */}
         </View>
         {/* Grounds Ends */}
 
