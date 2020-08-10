@@ -1,0 +1,25 @@
+{
+  "expo": {
+    "name": "IPL",
+    "slug": "IPL",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/ipl.jpg",
+    "splash": {
+      "image": "./assets/ipl.jpg",
+      "resizeMode": "stretch",
+      "backgroundColor": "black",
+      "borderRadius": "10"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}
