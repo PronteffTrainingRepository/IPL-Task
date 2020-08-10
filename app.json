@@ -4,22 +4,25 @@
     "slug": "IPL",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/ipl.jpg",
+    "icon": "./assets/ipllogo.png",
     "splash": {
-      "image": "./assets/ipl.jpg",
+      "image": "./assets/ipllogo.png",
       "resizeMode": "stretch",
-      "backgroundColor": "black",
-      "borderRadius": "10"
+      "backgroundColor": "white",
+      "borderRadius": 50
     },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "1.0.1"
   }
 }

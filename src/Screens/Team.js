@@ -766,6 +766,9 @@ function Team({ route, navigation }) {
     },
   ];
   useEffect(() => {
+    total1 = 0;
+    total2 = 0;
+    total3 = 0;
     arr.map((item) => {
       if (item.year == 2017 && (item.team_1 == teams || item.team_2 == teams)) {
         return setTotal1((total1 += 1));
@@ -784,6 +787,9 @@ function Team({ route, navigation }) {
   }, []);
 
   useEffect(() => {
+    won1 = 0;
+    won2 = 0;
+    won3 = 0;
     arr.map((item) => {
       if (item.year == 2017 && item.wonBy == teams) {
         return setWon1((won1 += 1));

@@ -92,7 +92,7 @@ export default function App() {
 
     // <View style={styles.container}>
 
-    //  <Team/>
+    //  <Stats/>
     //   <StatusBar style="auto" />
     // </View>
   );
