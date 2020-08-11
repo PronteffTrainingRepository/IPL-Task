@@ -10,6 +10,7 @@ import Result from "./src/Screens/Result";
 import Stats from "./src/Screens/Stats";
 import Ground from "./src/Screens/Ground";
 import Team from "./src/Screens/Team";
+
 const Stack = createStackNavigator();
 
 const ht = Dimensions.get("window").height;
