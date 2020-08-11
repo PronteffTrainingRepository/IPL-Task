@@ -10,7 +10,7 @@ import {
 const ht = Dimensions.get("window").height;
 const wd = Dimensions.get("window").width;
 
-function Stats() {
+function Stats({ route }) {
   const arr = [
     {
       year: "2017",
@@ -776,125 +776,137 @@ function Stats() {
     rps = 0;
     csk = 0;
     arr.map((item) => {
-      if (item.wonBy == "Kings XI Punjab" && item.year == 2017) {
+      if (item.wonBy == "Kings XI Punjab" && item.year == route.name) {
         return setWonkxip((kxip += 1));
-      } else if (item.wonBy == "Delhi Daredevils" && item.year == 2017) {
+      } else if (item.wonBy == "Delhi Daredevils" && item.year == route.name) {
         return setWondd((dd += 1));
-      } else if (item.wonBy == "Mumbai Indians" && item.year == 2017) {
+      } else if (item.wonBy == "Mumbai Indians" && item.year == route.name) {
         return setWonmi((mi += 1));
-      } else if (item.wonBy == "Kolkata Knight Riders" && item.year == 2017) {
+      } else if (item.wonBy == "Kolkata Knight Riders" && item.year == route.name) {
         return setWonkkr((kkr += 1));
       } else if (
         item.wonBy == "Royal Challengers Bangalore" &&
-        item.year == 2017
+        item.year == route.name
       ) {
         return setWonrcb((rcb += 1));
-      } else if (item.wonBy == "Sunrisers Hyderabad" && item.year == 2017) {
+      } else if (item.wonBy == "Sunrisers Hyderabad" && item.year == route.name) {
         return setWonsrh((srh += 1));
-      } else if (item.wonBy == "Rising Pune Supergiants" && item.year == 2017) {
+      } else if (item.wonBy == "Rising Pune Supergiants" && item.year == route.name) {
         return setWonrps((rps += 1));
-      } else if (item.wonBy == "Chennai Super Kings" && item.year == 2017) {
+      } else if (item.wonBy == "Chennai Super Kings" && item.year == route.name) {
         return setWoncsk((csk += 1));
       }
     });
   }, []);
 
-  const year1 = () => {
-    kxip = 0;
-    dd = 0;
-    mi = 0;
-    kkr = 0;
-    rcb = 0;
-    srh = 0;
-    rps = 0;
-    csk = 0;
-    arr.map((item) => {
-      if (item.wonBy == "Kings XI Punjab" && item.year == 2017) {
-        return setWonkxip((kxip += 1));
-      } else if (item.wonBy == "Delhi Daredevils" && item.year == 2017) {
-        return setWondd((dd += 1));
-      } else if (item.wonBy == "Mumbai Indians" && item.year == 2017) {
-        return setWonmi((mi += 1));
-      } else if (item.wonBy == "Kolkata Knight Riders" && item.year == 2017) {
-        return setWonkkr((kkr += 1));
-      } else if (
-        item.wonBy == "Royal Challengers Bangalore" &&
-        item.year == 2017
-      ) {
-        return setWonrcb((rcb += 1));
-      } else if (item.wonBy == "Sunrisers Hyderabad" && item.year == 2017) {
-        return setWonsrh((srh += 1));
-      } else if (item.wonBy == "Rising Pune Supergiants" && item.year == 2017) {
-        return setWonrps((rps += 1));
-      } else if (item.wonBy == "Chennai Super Kings" && item.year == 2017) {
-        return setWoncsk((csk += 1));
-      }
-    });
-  };
-  const year2 = () => {
-    kxip = 0;
-    dd = 0;
-    mi = 0;
-    kkr = 0;
-    rcb = 0;
-    srh = 0;
-    rps = 0;
-    csk = 0;
-    arr.map((item) => {
-      if (item.wonBy == "Kings XI Punjab" && item.year == 2018) {
-        return setWonkxip((kxip += 1));
-      } else if (item.wonBy == "Delhi Daredevils" && item.year == 2018) {
-        return setWondd((dd += 1));
-      } else if (item.wonBy == "Mumbai Indians" && item.year == 2018) {
-        return setWonmi((mi += 1));
-      } else if (item.wonBy == "Kolkata Knight Riders" && item.year == 2018) {
-        return setWonkkr((kkr += 1));
-      } else if (
-        item.wonBy == "Royal Challengers Bangalore" &&
-        item.year == 2018
-      ) {
-        return setWonrcb((rcb += 1));
-      } else if (item.wonBy == "Sunrisers Hyderabad" && item.year == 2018) {
-        return setWonsrh((srh += 1));
-      } else if (item.wonBy == "Rising Pune Supergiants" && item.year == 2018) {
-        return setWonrps((rps += 1));
-      } else if (item.wonBy == "Chennai Super Kings" && item.year == 2018) {
-        return setWoncsk((csk += 1));
-      }
-    });
-  };
-  const year3 = () => {
-    kxip = 0;
-    dd = 0;
-    mi = 0;
-    kkr = 0;
-    rcb = 0;
-    srh = 0;
-    rps = 0;
-    csk = 0;
-    arr.map((item) => {
-      if (item.wonBy == "Kings XI Punjab" && item.year == 2019) {
-        return setWonkxip((kxip += 1));
-      } else if (item.wonBy == "Delhi Daredevils" && item.year == 2019) {
-        return setWondd((dd += 1));
-      } else if (item.wonBy == "Mumbai Indians" && item.year == 2019) {
-        return setWonmi((mi += 1));
-      } else if (item.wonBy == "Kolkata Knight Riders" && item.year == 2019) {
-        return setWonkkr((kkr += 1));
-      } else if (
-        item.wonBy == "Royal Challengers Bangalore" &&
-        item.year == 2019
-      ) {
-        return setWonrcb((rcb += 1));
-      } else if (item.wonBy == "Sunrisers Hyderabad" && item.year == 2019) {
-        return setWonsrh((srh += 1));
-      } else if (item.wonBy == "Rising Pune Supergiants" && item.year == 2019) {
-        return setWonrps((rps += 1));
-      } else if (item.wonBy == "Chennai Super Kings" && item.year == 2019) {
-        return setWoncsk((csk += 1));
-      }
-    });
-  };
+  // const year1 = () => {
+  //   kxip = 0;
+  //   dd = 0;
+  //   mi = 0;
+  //   kkr = 0;
+  //   rcb = 0;
+  //   srh = 0;
+  //   rps = 0;
+  //   csk = 0;
+  //   arr.map((item) => {
+  //     if (item.wonBy == "Kings XI Punjab" && item.year == route.name) {
+  //       return setWonkxip((kxip += 1));
+  //     } else if (item.wonBy == "Delhi Daredevils" && item.year == route.name) {
+  //       return setWondd((dd += 1));
+  //     } else if (item.wonBy == "Mumbai Indians" && item.year == route.name) {
+  //       return setWonmi((mi += 1));
+  //     } else if (
+  //       item.wonBy == "Kolkata Knight Riders" &&
+  //       item.year == route.name
+  //     ) {
+  //       return setWonkkr((kkr += 1));
+  //     } else if (
+  //       item.wonBy == "Royal Challengers Bangalore" &&
+  //       item.year == route.name
+  //     ) {
+  //       return setWonrcb((rcb += 1));
+  //     } else if (
+  //       item.wonBy == "Sunrisers Hyderabad" &&
+  //       item.year == route.name
+  //     ) {
+  //       return setWonsrh((srh += 1));
+  //     } else if (
+  //       item.wonBy == "Rising Pune Supergiants" &&
+  //       item.year == route.name
+  //     ) {
+  //       return setWonrps((rps += 1));
+  //     } else if (
+  //       item.wonBy == "Chennai Super Kings" &&
+  //       item.year == route.name
+  //     ) {
+  //       return setWoncsk((csk += 1));
+  //     }
+  //   });
+  // };
+  // const year2 = () => {
+  //   kxip = 0;
+  //   dd = 0;
+  //   mi = 0;
+  //   kkr = 0;
+  //   rcb = 0;
+  //   srh = 0;
+  //   rps = 0;
+  //   csk = 0;
+  //   arr.map((item) => {
+  //     if (item.wonBy == "Kings XI Punjab" && item.year == route.name) {
+  //       return setWonkxip((kxip += 1));
+  //     } else if (item.wonBy == "Delhi Daredevils" && item.year == route.name) {
+  //       return setWondd((dd += 1));
+  //     } else if (item.wonBy == "Mumbai Indians" && item.year == route.name) {
+  //       return setWonmi((mi += 1));
+  //     } else if (item.wonBy == "Kolkata Knight Riders" && item.year == route.name) {
+  //       return setWonkkr((kkr += 1));
+  //     } else if (
+  //       item.wonBy == "Royal Challengers Bangalore" &&
+  //       item.year == route.name
+  //     ) {
+  //       return setWonrcb((rcb += 1));
+  //     } else if (item.wonBy == "Sunrisers Hyderabad" && item.year == route.name) {
+  //       return setWonsrh((srh += 1));
+  //     } else if (item.wonBy == "Rising Pune Supergiants" && item.year == route.name) {
+  //       return setWonrps((rps += 1));
+  //     } else if (item.wonBy == "Chennai Super Kings" && item.year == route.name) {
+  //       return setWoncsk((csk += 1));
+  //     }
+  //   });
+  // };
+  // const year3 = () => {
+  //   kxip = 0;
+  //   dd = 0;
+  //   mi = 0;
+  //   kkr = 0;
+  //   rcb = 0;
+  //   srh = 0;
+  //   rps = 0;
+  //   csk = 0;
+  //   arr.map((item) => {
+  //     if (item.wonBy == "Kings XI Punjab" && item.year == route.name) {
+  //       return setWonkxip((kxip += 1));
+  //     } else if (item.wonBy == "Delhi Daredevils" && item.year == route.name) {
+  //       return setWondd((dd += 1));
+  //     } else if (item.wonBy == "Mumbai Indians" && item.year == route.name) {
+  //       return setWonmi((mi += 1));
+  //     } else if (item.wonBy == "Kolkata Knight Riders" && item.year == route.name) {
+  //       return setWonkkr((kkr += 1));
+  //     } else if (
+  //       item.wonBy == "Royal Challengers Bangalore" &&
+  //       item.year == route.name
+  //     ) {
+  //       return setWonrcb((rcb += 1));
+  //     } else if (item.wonBy == "Sunrisers Hyderabad" && item.year == route.name) {
+  //       return setWonsrh((srh += 1));
+  //     } else if (item.wonBy == "Rising Pune Supergiants" && item.year == route.name) {
+  //       return setWonrps((rps += 1));
+  //     } else if (item.wonBy == "Chennai Super Kings" && item.year == route.name) {
+  //       return setWoncsk((csk += 1));
+  //     }
+  //   });
+  // };
   return (
     <View style={styles.container}>
       <View
@@ -904,6 +916,12 @@ function Stats() {
       >
         <View style={styles.graphView}>
           <View style={styles.nohyContainer}>
+            <View style={{ flexDirection: "row", marginBottom: ht * 0.034 }}>
+              <Text style={styles.number}>14-</Text>
+            </View>
+            <View style={{ flexDirection: "row", marginBottom: ht * 0.035 }}>
+              <Text style={styles.number}>12-</Text>
+            </View>
             <View style={{ flexDirection: "row", marginBottom: ht * 0.032 }}>
               <Text style={styles.number}>10-</Text>
             </View>
@@ -1090,7 +1108,7 @@ function Stats() {
             </Text>
           </View>
         </View>
-        <View
+        {/* <View
           style={{
             flexDirection: "row",
             justifyContent: "space-around",
@@ -1099,7 +1117,7 @@ function Stats() {
         >
           <TouchableOpacity onPress={year1}>
             <View style={styles.years}>
-              <Text style={styles.yearstext}>2017</Text>
+              <Text style={styles.yearstext}>route.name</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={year2}>
@@ -1112,7 +1130,7 @@ function Stats() {
               <Text style={styles.yearstext}>2019</Text>
             </View>
           </TouchableOpacity>
-        </View>
+        </View>*/}
       </View>
     </View>
   );

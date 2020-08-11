@@ -824,7 +824,31 @@ function Team({ route, navigation }) {
       <View>
         <ScrollView horizontal>
           {arr
-            .filter((it) => it.team_1 == teams)
+            .filter((it) => it.team_1 == teams || it.team_2 == teams)
+            .map((item) => (
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate("result", {
+                    team1: item.team_1,
+                    team2: item.team_2,
+                    venue: item.Venue,
+                    date: item.date,
+                    years: item.year,
+                    won: item.wonBy,
+                  });
+                }}
+              >
+                <View key={item.date} style={styles.card}>
+                  <Text style={styles.info}>Team 1 :{item.team_1}</Text>
+                  <Text style={styles.info}>Team 2 :{item.team_2}</Text>
+                  <Text style={styles.info}>Venue :{item.Venue}</Text>
+                  <Text style={styles.info}>Result :{item.wonBy}</Text>
+                  <Text style={styles.info}>Year :{item.year}</Text>
+                </View>
+              </TouchableOpacity>
+            ))}
+          {/* {arr
+            .filter((it) => )
             .map((item) => (
               <TouchableOpacity>
                 <View key={item.date} style={styles.card}>
@@ -835,20 +859,7 @@ function Team({ route, navigation }) {
                   <Text style={styles.info}>Year :{item.year}</Text>
                 </View>
               </TouchableOpacity>
-            ))}
-          {arr
-            .filter((it) => it.team_2 == teams)
-            .map((item) => (
-              <TouchableOpacity>
-                <View key={item.date} style={styles.card}>
-                  <Text style={styles.info}>Team 1 :{item.team_1}</Text>
-                  <Text style={styles.info}>Team 2 :{item.team_2}</Text>
-                  <Text style={styles.info}>Venue :{item.Venue}</Text>
-                  <Text style={styles.info}>Result :{item.wonBy}</Text>
-                  <Text style={styles.info}>Year :{item.year}</Text>
-                </View>
-              </TouchableOpacity>
-            ))}
+            ))} */}
         </ScrollView>
       </View>
 

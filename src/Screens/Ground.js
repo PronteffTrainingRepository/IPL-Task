@@ -763,9 +763,20 @@ function Ground({ route, navigation }) {
     <View style={styles.container}>
       <ScrollView>
         {arr
-          .filter((it) => it.Venue == (ground))
+          .filter((it) => it.Venue == ground)
           .map((item) => (
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("result", {
+                  team1: item.team_1,
+                  team2: item.team_2,
+                  venue: item.Venue,
+                  date: item.date,
+                  years: item.year,
+                  won: item.wonBy,
+                });
+              }}
+            >
               <View key={item.date} style={styles.card}>
                 <Text style={styles.info}>Team 1 :{item.team_1}</Text>
                 <Text style={styles.info}>Team 2 :{item.team_2}</Text>

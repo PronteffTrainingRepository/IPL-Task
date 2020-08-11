@@ -11,11 +11,11 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { AntDesign } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import Result from "./Result";
-
+import Team from "./Team";
 const ht = Dimensions.get("window").height;
 const wd = Dimensions.get("window").width;
 
-function Home({ navigation }) {
+function Home({ navigation, year, route }) {
   const arr = [
     {
       year: "2017",
@@ -762,7 +762,17 @@ function Home({ navigation }) {
       wonBy: "Delhi Daredevils",
     },
   ];
+
+  React.useEffect(
+    () =>
+      navigation.addListener("beforeRemove", (e) => {
+        const action = e.data.action;
+        e.preventDefault();
+      }),
+    [navigation]
+  );
   const [count, setCount] = useState(2017);
+
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -917,7 +927,7 @@ function Home({ navigation }) {
         <View>
           <ScrollView horizontal>
             {arr
-              .filter((it) => it.year == count)
+              .filter((it) => it.year == route.name)
               .map((item, index) => (
                 <TouchableOpacity
                   onPress={() => {
@@ -1089,28 +1099,34 @@ function Home({ navigation }) {
           </View> */}
         </View>
         {/* Grounds Ends */}
-
-        {/* tabs buttons started*/}
-        <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
-          <TouchableOpacity onPress={() => setCount(2017)}>
-            <View style={styles.years}>
-              <Text style={styles.yearstext}>2017</Text>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => setCount(2018)}>
-            <View style={styles.years}>
-              <Text style={styles.yearstext}>2018</Text>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => setCount(2019)}>
-            <View style={styles.years}>
-              <Text style={styles.yearstext}>2019</Text>
-            </View>
-          </TouchableOpacity>
-        </View>
-
-        {/* tabs buttons Ended */}
       </ScrollView>
+      {/* tabs buttons started*/}
+      {/* <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-around",
+          position: "relative",
+          bottom: 0,
+        }}
+      >
+        <TouchableOpacity onPress={() => setCount(2017)}>
+          <View style={styles.years}>
+            <Text style={styles.yearstext}>2017</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => setCount(2018)}>
+          <View style={styles.years}>
+            <Text style={styles.yearstext}>2018</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => setCount(2019)}>
+          <View style={styles.years}>
+            <Text style={styles.yearstext}>2019</Text>
+          </View>
+        </TouchableOpacity>
+      </View> */}
+
+      {/* tabs buttons Ended */}
     </View>
   );
 }
