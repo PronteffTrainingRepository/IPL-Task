@@ -23,28 +23,30 @@ function Result({ route, navigation }) {
   return (
     <View style={styles.container}>
       <ScrollView>
-        <TouchableOpacity>
+        <View>
           <View style={styles.main}>
-            <Text style={styles.heading}>Match Result</Text>
-            <Image
-              style={styles.logo}
-              source={require("../../assets/ipl.jpg")}
-            />
-            <Text style={styles.content}>Team 1 : {team1} </Text>
-            <Text style={styles.content}>Team 2 : {team2}</Text>
-            <Text style={styles.content}>Venue : {venue}</Text>
-            <Text style={styles.content}>Date : {date}</Text>
-            <Text style={styles.content}>Year : {years}</Text>
-            <Text style={styles.content}>Won By : {won}</Text>
-            <Text style={styles.content}>
-              Match was played between {team1} and {team2} on {venue} venue.
-              Match was played on {date}, in {years} addition of IPL.This match
-              was Won by {won}. Congratulations to captain of {won}, their whole
-              team and management. Good Luck!!! To both teams {team1} and{" "}
-              {team2} for their future journey....
-            </Text>
+            <TouchableOpacity>
+              <Text style={styles.heading}>Match Result</Text>
+              <Image
+                style={styles.logo}
+                source={require("../../assets/ipl.jpg")}
+              />
+              <Text style={styles.content}>Team 1 : {team1} </Text>
+              <Text style={styles.content}>Team 2 : {team2}</Text>
+              <Text style={styles.content}>Venue : {venue}</Text>
+              <Text style={styles.content}>Date : {date}</Text>
+              <Text style={styles.content}>Year : {years}</Text>
+              <Text style={styles.content}>Winner : {won}</Text>
+              <Text style={styles.content}>
+                Match was played between {team1} and {team2} on {venue} venue.
+                Match was played on {date}, in {years} addition of IPL.This
+                match was Won by {won}. Congratulations to captain of {won},
+                their whole team and management. Good Luck!!! To both teams{" "}
+                {team1} and {team2} for their future journey...!
+              </Text>
+            </TouchableOpacity>
           </View>
-        </TouchableOpacity>
+        </View>
       </ScrollView>
     </View>
   );
