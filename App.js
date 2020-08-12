@@ -124,12 +124,11 @@ function Homes() {
   return (
     <Tab.Navigator
       initialRouteName="2017"
-
       tabBarOptions={{
         labelStyle: {
           justifyContent: "center",
           alignContent: "center",
-          fontSize: ht*0.04,
+          fontSize: ht * 0.04,
           fontWeight: "bold",
         },
         tabStyle: {
@@ -137,7 +136,7 @@ function Homes() {
           alignContent: "center",
           borderWidth: 0.5,
           borderColor: "white",
-          borderRadius:40,
+          borderRadius: 40,
         },
         activeTintColor: "white",
         activeBackgroundColor: "#8459B5",
@@ -173,6 +172,7 @@ function Homes2() {
         activeBackgroundColor: "#8459B5",
         inactiveBackgroundColor: "black",
         inactiveTintColor: "white",
+        backgroundColor: "transparent",
       }}
     >
       <Tab.Screen name="2017" component={Stats} />
