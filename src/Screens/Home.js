@@ -794,9 +794,9 @@ function Home({ navigation,  route }) {
             >
               <Ionicons
                 name="ios-stats"
-                size={24}
+                size={30}
                 color="white"
-                style={{ paddingRight: wd * 0.04, paddingTop: ht * 0.01 }}
+                style={{ paddingRight: wd * 0.06, paddingTop: ht * 0.01 }}
               />
             </TouchableOpacity>
           </View>

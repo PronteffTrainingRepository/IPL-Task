@@ -922,9 +922,9 @@ function Homes2() {
         backgroundColor: "transparent",
       }}
     >
-      <Tab.Screen name="2017" component={Stats} />
-      <Tab.Screen name="2018" component={Stats} />
-      <Tab.Screen name="2019" component={Stats} />
+      <Tab.Screen name="2017" component={Stats}   />
+      <Tab.Screen name="2018" component={Stats}   />
+      <Tab.Screen name="2019" component={Stats}   />
     </Tab.Navigator>
   );
 }
