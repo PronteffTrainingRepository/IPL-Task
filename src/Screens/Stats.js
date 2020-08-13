@@ -1141,9 +1141,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#4D4F79",
-    // alignItems: 'center',
-    // justifyContent: 'center',
-    // marginTop: ht * 0.04,
+   
   },
   years: {
     borderWidth: 1,
