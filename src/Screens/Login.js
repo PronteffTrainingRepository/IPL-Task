@@ -87,7 +87,7 @@ function Login({ navigation }) {
           <TouchableOpacity
             onPress={() => {
               // if (name === "Srashu" && password === "task@123")
-              if (name === "S" && password === "s") {
+              if (name === "pronteff" && password === "pronteff") {
                 navigation.navigate("home");
               } else {
                 alert("Invalid Username or Password");
