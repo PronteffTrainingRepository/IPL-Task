@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import {
   View,
   StyleSheet,
@@ -14,7 +14,7 @@ import {
 } from "react-native";
 import { Dimensions } from "react-native";
 import Home from "./Home";
-
+import axios from "axios";
 const ht = Dimensions.get("window").height;
 const wd = Dimensions.get("window").width;
 const DismissKeyboard = ({ children }) => (
@@ -25,8 +25,20 @@ const DismissKeyboard = ({ children }) => (
 function Login({ navigation }) {
   const [name, onChangeText] = React.useState("Useless Placeholder");
   const [password, onChangePassword] = React.useState("Useless Placeholder");
+
+  async function getData() {
+    await axios
+      .post("http://192.168.1.146:4000/users/authenticate", { name, password })
+      .then((res) => {
+        if (res.data == "Success") {
+          navigation.navigate("home");
+        }
+      })
+      .catch((err) => alert(err));
+  }
+
   const keyboardVerticalOffset =
-    Platform.OS === "android" ? -ht * 0.048 : -ht * 0.1;
+    Platform.OS === "android" ? -ht * 0.038 : -ht * 0.1;
   return (
     <DismissKeyboard>
       <KeyboardAvoidingView
@@ -86,12 +98,7 @@ function Login({ navigation }) {
         <View>
           <TouchableOpacity
             onPress={() => {
-              // if (name === "Srashu" && password === "task@123")
-              if (name === "S" && password === "s") {
-                navigation.navigate("home");
-              } else {
-                alert("Invalid Username or Password");
-              }
+              getData();
             }}
             style={styles.button}
           >
@@ -103,6 +110,24 @@ function Login({ navigation }) {
               }}
             >
               Sign In
+            </Text>
+          </TouchableOpacity>
+        </View>
+        <View>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("registration");
+            }}
+            style={styles.button1}
+          >
+            <Text
+              style={{
+                color: "white",
+                fontSize: ht * 0.04,
+                textAlign: "center",
+              }}
+            >
+              Registration
             </Text>
           </TouchableOpacity>
         </View>
@@ -130,6 +155,15 @@ const styles = StyleSheet.create({
   button: {
     alignItems: "center",
     backgroundColor: "#3EA03B",
+    padding: ht * 0.002,
+    width: wd * 0.8,
+    height: ht * 0.07,
+    borderRadius: 30,
+    marginTop: ht * 0.03,
+  },
+  button1: {
+    alignItems: "center",
+    backgroundColor: "#19388A",
     padding: ht * 0.002,
     width: wd * 0.8,
     height: ht * 0.07,
