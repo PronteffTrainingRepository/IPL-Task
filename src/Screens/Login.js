@@ -27,14 +27,19 @@ function Login({ navigation }) {
   const [password, onChangePassword] = React.useState("Useless Placeholder");
 
   async function getData() {
+    console.log({ username: name, password: password });
     await axios
-      .post("http://192.168.1.146:4000/users/authenticate", { name, password })
+      .post(
+        "http://192.168.1.146:4000/users/authenticate",
+
+        { username: name, password: password }
+      )
       .then((res) => {
-        if (res.data == "Success") {
-          navigation.navigate("home");
-        }
+        navigation.navigate("home");
       })
-      .catch((err) => alert(err));
+      .catch((err) => {
+        console.log(err);;
+      });
   }
 
   const keyboardVerticalOffset =

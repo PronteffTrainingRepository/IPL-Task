@@ -1,9 +1,22 @@
 import { StatusBar } from "expo-status-bar";
-import React from "react";
-import { StyleSheet, Text, View, Dimensions } from "react-native";
+import React, { useState } from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Dimensions,
+  Button,
+  TouchableOpacity,
+} from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import {
+  createDrawerNavigator,
+  DrawerContentScrollView,
+  DrawerItemList,
+  DrawerItem,
+} from "@react-navigation/drawer";
 import Home from "./src/Screens/Home";
 import Login from "./src/Screens/Login";
 import Result from "./src/Screens/Result";
@@ -12,6 +25,8 @@ import Ground from "./src/Screens/Ground";
 import Team from "./src/Screens/Team";
 import Registration from "./src/Screens/Registration";
 import Update from "./src/Screens/Update";
+import { AntDesign } from "@expo/vector-icons";
+
 const arr = [
   {
     year: "2017",
@@ -760,11 +775,22 @@ const arr = [
 ];
 
 const Stack = createStackNavigator();
+const Drawer = createDrawerNavigator();
 
 const ht = Dimensions.get("window").height;
 const wd = Dimensions.get("window").width;
 
-export default function App() {
+export default function App({ navigation }) {
+  const [toggle, settoggle] = useState(false);
+
+  const toggleDrawer = () => {
+    if (toggle == true) {
+      navigation.openDrawer();
+      settoggle(!toggle);
+    } else {
+      navigation.openDrawer();
+    }
+  };
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="login">
@@ -780,7 +806,7 @@ export default function App() {
             headerTitleAlign: "center",
           }}
         />
-        <Stack.Screen
+        {/* <Stack.Screen
           name="home"
           component={Homes}
           options={{
@@ -794,7 +820,46 @@ export default function App() {
             headerTitleStyle: {
               fontWeight: "bold",
             },
+            headerLeft: () => (
+              <AntDesign
+                name="caretright"
+                size={30}
+                color="black"
+                onPress={() => navigation.push("homedrawers")}
+                title="open"
+                color="black"
+                style={{ marginLeft: 10 }}
+              />
+            ),
           }}
+        /> */}
+        <Stack.Screen
+          name="home"
+          component={DrawerNav}
+          options={{ headerShown: false }}
+          // options={{
+          //   title: "My Home",
+          //   headerLeft: null,
+          //   headerStyle: {
+          //     backgroundColor: "#f4511e",
+          //   },
+          //   headerTintColor: "#fff",
+          //   headerTitleAlign: "center",
+          //   headerTitleStyle: {
+          //     fontWeight: "bold",
+          //   },
+          //   headerLeft: () => (
+          //     <AntDesign
+          //       name="caretright"
+          //       size={30}
+          //       color="black"
+          //       onPress={() => toggleDrawer({ navigation })}
+          //       title="open"
+          //       color="black"
+          //       style={{ marginLeft: 10 }}
+          //     />
+          //   ),
+          // }}
         />
         <Stack.Screen
           name="result"
@@ -852,7 +917,7 @@ export default function App() {
           component={Registration}
           options={{ headerShown: false }}
         />
-    <Stack.Screen
+        <Stack.Screen
           name="update"
           component={Update}
           options={{ headerShown: false }}
@@ -875,38 +940,39 @@ const styles = StyleSheet.create({
     // justifyContent: 'center',
   },
 });
-const Tab = createBottomTabNavigator();
+// const Tab = createBottomTabNavigator();
 
-function Homes() {
-  return (
-    <Tab.Navigator
-      initialRouteName="2017"
-      tabBarOptions={{
-        labelStyle: {
-          justifyContent: "center",
-          alignContent: "center",
-          fontSize: ht * 0.04,
-          fontWeight: "bold",
-        },
-        tabStyle: {
-          justifyContent: "center",
-          alignContent: "center",
-          borderWidth: 0.5,
-          borderColor: "white",
-          borderRadius: 40,
-        },
-        activeTintColor: "white",
-        activeBackgroundColor: "#8459B5",
-        inactiveBackgroundColor: "black",
-        inactiveTintColor: "white",
-      }}
-    >
-      <Tab.Screen name="2017" component={Home} />
-      <Tab.Screen name="2018" component={Home} />
-      <Tab.Screen name="2019" component={Home} />
-    </Tab.Navigator>
-  );
-}
+// function Homes() {
+//   return (
+//     <Tab.Navigator
+//       initialRouteName="2017"
+//       tabBarOptions={{
+//         labelStyle: {
+//           justifyContent: "center",
+//           alignContent: "center",
+//           fontSize: ht * 0.04,
+//           fontWeight: "bold",
+//         },
+//         tabStyle: {
+//           justifyContent: "center",
+//           alignContent: "center",
+//           borderWidth: 0.5,
+//           borderColor: "white",
+//           borderRadius: 40,
+//         },
+//         activeTintColor: "white",
+//         activeBackgroundColor: "#8459B5",
+//         inactiveBackgroundColor: "black",
+//         inactiveTintColor: "white",
+//       }}
+//     >
+//       {/* <Tab.Screen name="hello" component={DrawerNav} /> */}
+//       <Tab.Screen name="2017" component={Home} />
+//       <Tab.Screen name="2018" component={Home} />
+//       <Tab.Screen name="2019" component={Home} />
+//     </Tab.Navigator>
+//   );
+// }
 function Homes2() {
   return (
     <Tab.Navigator
@@ -938,3 +1004,23 @@ function Homes2() {
     </Tab.Navigator>
   );
 }
+
+const DrawerNav = ({ navigation }) => {
+  return (
+    <Drawer.Navigator initialRouteName="homedrawer">
+      <Drawer.Screen
+        name="homedrawer"
+        component={Home}
+        options={{ headerShown: false }}
+      />
+      <Drawer.Screen name="createteam" component={Home} />
+      <Drawer.Screen
+        name="profile"
+        component={Update}
+        options={{ title: "Profile screen" }}
+      />
+
+      <Drawer.Screen name="LOGOUT" component={Login} />
+    </Drawer.Navigator>
+  );
+};

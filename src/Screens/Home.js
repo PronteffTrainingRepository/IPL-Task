@@ -10,10 +10,13 @@ import {
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { AntDesign } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+
 import Result from "./Result";
 import Team from "./Team";
 const ht = Dimensions.get("window").height;
 const wd = Dimensions.get("window").width;
+const Drawer = createDrawerNavigator();
 const arr = [
   {
     year: "2017",
@@ -760,11 +763,9 @@ const arr = [
     wonBy: "Delhi Daredevils",
   },
 ];
-const data=[]
+const data = [];
 
-function Home({ navigation,  route }) {
-  
-
+function Home({ navigation, route }) {
   React.useEffect(
     () =>
       navigation.addListener("beforeRemove", (e) => {
@@ -772,11 +773,22 @@ function Home({ navigation,  route }) {
       }),
     [navigation]
   );
-  // const [count, setCount] = useState(2017);
-  // const [data, setData] = useState([arr])
+  const [count, setCount] = useState(2017);
+  const [data, setData] = useState([arr])
 
   return (
     <View style={styles.container}>
+      {/* <View
+        style={{
+          backgroundColor: "black",
+          position: "relative",
+          top: -20,
+          elevation: 5,
+          zIndex: 20,
+        }}
+      >
+        <Text style={{ color: "white" }}>open</Text>
+      </View> */}
       <ScrollView>
         {/* Teams Cards Started */}
         <View
@@ -811,25 +823,27 @@ function Home({ navigation,  route }) {
             <TouchableOpacity
               onPress={() => {
                 {
-                navigation.navigate("team", {
-                 teams : " Chennai Super Kings",
-                  data : arr.filter((it) =>  ( (it.team_1 == " Chennai Super Kings" ) || (it.team_2 == " Chennai Super Kings")) )
-                   .map((item) => {
-                   
-                      return (
-                        { year : item.year,
-                          team_1 : item.team_1,
-                          team_2 : item.team_2,
-                          date : item.date,
-                          Venue : item.Venue,
-                          won : item.wonBy
-                        }
-                        );
-                    })
-                });
+                  navigation.navigate("team", {
+                    teams: " Chennai Super Kings",
+                    data: arr
+                      .filter(
+                        (it) =>
+                          it.team_1 == " Chennai Super Kings" ||
+                          it.team_2 == " Chennai Super Kings"
+                      )
+                      .map((item) => {
+                        return {
+                          year: item.year,
+                          team_1: item.team_1,
+                          team_2: item.team_2,
+                          date: item.date,
+                          Venue: item.Venue,
+                          won: item.wonBy,
+                        };
+                      }),
+                  });
+                }
               }}
-            }
-            
             >
               <Image
                 style={styles.logo}
@@ -837,28 +851,30 @@ function Home({ navigation,  route }) {
               />
               <Text style={styles.teamname}>CSK</Text>
             </TouchableOpacity>
-            <TouchableOpacity
+            <TouchableOpacity     
               onPress={() => {
                 {
-                navigation.navigate("team", {
-                 teams : "Kings XI Punjab",
-                  data : arr.filter((it) =>  ( (it.team_1 == "Kings XI Punjab" ) || (it.team_2 == "Kings XI Punjab")) )
-                   .map((item) => {
-                   
-                      return (
-                        { year : item.year,
-                          team_1 : item.team_1,
-                          team_2 : item.team_2,
-                          date : item.date,
-                          Venue : item.Venue,
-                          won : item.wonBy
-                        }
-                        );
-                    })
-                });
+                  navigation.navigate("team", {
+                    teams: "Kings XI Punjab",
+                    data: arr
+                      .filter(
+                        (it) =>
+                          it.team_1 == "Kings XI Punjab" ||
+                          it.team_2 == "Kings XI Punjab"
+                      )
+                      .map((item) => {
+                        return {
+                          year: item.year,
+                          team_1: item.team_1,
+                          team_2: item.team_2,
+                          date: item.date,
+                          Venue: item.Venue,
+                          won: item.wonBy,
+                        };
+                      }),
+                  });
+                }
               }}
-            }
-            
             >
               <Image
                 style={styles.logo}
@@ -869,25 +885,27 @@ function Home({ navigation,  route }) {
             <TouchableOpacity
               onPress={() => {
                 {
-                navigation.navigate("team", {
-                 teams : "Mumbai Indians",
-                  data : arr.filter((it) =>  ( (it.team_1 == "Mumbai Indians" ) || (it.team_2 == "Mumbai Indians")) )
-                   .map((item) => {
-                   
-                      return (
-                        { year : item.year,
-                          team_1 : item.team_1,
-                          team_2 : item.team_2,
-                          date : item.date,
-                          Venue : item.Venue,
-                          won : item.wonBy
-                        }
-                        );
-                    })
-                });
+                  navigation.navigate("team", {
+                    teams: "Mumbai Indians",
+                    data: arr
+                      .filter(
+                        (it) =>
+                          it.team_1 == "Mumbai Indians" ||
+                          it.team_2 == "Mumbai Indians"
+                      )
+                      .map((item) => {
+                        return {
+                          year: item.year,
+                          team_1: item.team_1,
+                          team_2: item.team_2,
+                          date: item.date,
+                          Venue: item.Venue,
+                          won: item.wonBy,
+                        };
+                      }),
+                  });
+                }
               }}
-            }
-            
             >
               <Image
                 style={styles.logo}
@@ -898,25 +916,27 @@ function Home({ navigation,  route }) {
             <TouchableOpacity
               onPress={() => {
                 {
-                navigation.navigate("team", {
-                 teams : "Kolkata Knight Riders",
-                  data : arr.filter((it) =>  ( (it.team_1 == "Kolkata Knight Riders" ) || (it.team_2 == "Kolkata Knight Riders")) )
-                   .map((item) => {
-                   
-                      return (
-                        { year : item.year,
-                          team_1 : item.team_1,
-                          team_2 : item.team_2,
-                          date : item.date,
-                          Venue : item.Venue,
-                          won : item.wonBy
-                        }
-                        );
-                    })
-                });
+                  navigation.navigate("team", {
+                    teams: "Kolkata Knight Riders",
+                    data: arr
+                      .filter(
+                        (it) =>
+                          it.team_1 == "Kolkata Knight Riders" ||
+                          it.team_2 == "Kolkata Knight Riders"
+                      )
+                      .map((item) => {
+                        return {
+                          year: item.year,
+                          team_1: item.team_1,
+                          team_2: item.team_2,
+                          date: item.date,
+                          Venue: item.Venue,
+                          won: item.wonBy,
+                        };
+                      }),
+                  });
+                }
               }}
-            }
-            
             >
               <Image
                 style={styles.logo}
@@ -936,25 +956,27 @@ function Home({ navigation,  route }) {
             <TouchableOpacity
               onPress={() => {
                 {
-                navigation.navigate("team", {
-                 teams : "Royal Challengers Bangalore",
-                  data : arr.filter((it) =>  ( (it.team_1 == "Royal Challengers Bangalore" ) || (it.team_2 == "Royal Challengers Bangalore")) )
-                   .map((item) => {
-                   
-                      return (
-                        { year : item.year,
-                          team_1 : item.team_1,
-                          team_2 : item.team_2,
-                          date : item.date,
-                          Venue : item.Venue,
-                          won : item.wonBy
-                        }
-                        );
-                    })
-                });
+                  navigation.navigate("team", {
+                    teams: "Royal Challengers Bangalore",
+                    data: arr
+                      .filter(
+                        (it) =>
+                          it.team_1 == "Royal Challengers Bangalore" ||
+                          it.team_2 == "Royal Challengers Bangalore"
+                      )
+                      .map((item) => {
+                        return {
+                          year: item.year,
+                          team_1: item.team_1,
+                          team_2: item.team_2,
+                          date: item.date,
+                          Venue: item.Venue,
+                          won: item.wonBy,
+                        };
+                      }),
+                  });
+                }
               }}
-            }
-            
             >
               <Image
                 style={styles.logo}
@@ -965,25 +987,27 @@ function Home({ navigation,  route }) {
             <TouchableOpacity
               onPress={() => {
                 {
-                navigation.navigate("team", {
-                 teams : "Sunrisers Hyderabad",
-                  data : arr.filter((it) =>  ( (it.team_1 == "Sunrisers Hyderabad" ) || (it.team_2 == "Sunrisers Hyderabad")) )
-                   .map((item) => {
-                   
-                      return (
-                        { year : item.year,
-                          team_1 : item.team_1,
-                          team_2 : item.team_2,
-                          date : item.date,
-                          Venue : item.Venue,
-                          won : item.wonBy
-                        }
-                        );
-                    })
-                });
+                  navigation.navigate("team", {
+                    teams: "Sunrisers Hyderabad",
+                    data: arr
+                      .filter(
+                        (it) =>
+                          it.team_1 == "Sunrisers Hyderabad" ||
+                          it.team_2 == "Sunrisers Hyderabad"
+                      )
+                      .map((item) => {
+                        return {
+                          year: item.year,
+                          team_1: item.team_1,
+                          team_2: item.team_2,
+                          date: item.date,
+                          Venue: item.Venue,
+                          won: item.wonBy,
+                        };
+                      }),
+                  });
+                }
               }}
-            }
-            
             >
               <Image
                 style={styles.logo}
@@ -994,25 +1018,27 @@ function Home({ navigation,  route }) {
             <TouchableOpacity
               onPress={() => {
                 {
-                navigation.navigate("team", {
-                 teams : "Rising Pune Supergiants",
-                  data : arr.filter((it) =>  ( (it.team_1 == "Rising Pune Supergiants" ) || (it.team_2 == "Rising Pune Supergiants")) )
-                   .map((item) => {
-                   
-                      return (
-                        { year : item.year,
-                          team_1 : item.team_1,
-                          team_2 : item.team_2,
-                          date : item.date,
-                          Venue : item.Venue,
-                          won : item.wonBy
-                        }
-                        );
-                    })
-                });
+                  navigation.navigate("team", {
+                    teams: "Rising Pune Supergiants",
+                    data: arr
+                      .filter(
+                        (it) =>
+                          it.team_1 == "Rising Pune Supergiants" ||
+                          it.team_2 == "Rising Pune Supergiants"
+                      )
+                      .map((item) => {
+                        return {
+                          year: item.year,
+                          team_1: item.team_1,
+                          team_2: item.team_2,
+                          date: item.date,
+                          Venue: item.Venue,
+                          won: item.wonBy,
+                        };
+                      }),
+                  });
+                }
               }}
-            }
-            
             >
               <Image
                 style={styles.logo}
@@ -1023,25 +1049,27 @@ function Home({ navigation,  route }) {
             <TouchableOpacity
               onPress={() => {
                 {
-                navigation.navigate("team", {
-                 teams : "Delhi Daredevils",
-                  data : arr.filter((it) =>  ( (it.team_1 == "Delhi Daredevils" ) || (it.team_2 == "Delhi Daredevils")) )
-                   .map((item) => {
-                   
-                      return (
-                        { year : item.year,
-                          team_1 : item.team_1,
-                          team_2 : item.team_2,
-                          date : item.date,
-                          Venue : item.Venue,
-                          won : item.wonBy
-                        }
-                        );
-                    })
-                });
+                  navigation.navigate("team", {
+                    teams: "Delhi Daredevils",
+                    data: arr
+                      .filter(
+                        (it) =>
+                          it.team_1 == "Delhi Daredevils" ||
+                          it.team_2 == "Delhi Daredevils"
+                      )
+                      .map((item) => {
+                        return {
+                          year: item.year,
+                          team_1: item.team_1,
+                          team_2: item.team_2,
+                          date: item.date,
+                          Venue: item.Venue,
+                          won: item.wonBy,
+                        };
+                      }),
+                  });
+                }
               }}
-            }
-            
             >
               <Image
                 style={styles.logo}
@@ -1057,7 +1085,7 @@ function Home({ navigation,  route }) {
         <View>
           <ScrollView horizontal>
             {arr
-              .filter((it) => it.year == route.name)
+              .filter((it) => it.year == count)
               .map((item) => (
                 <TouchableOpacity
                   onPress={() => {
@@ -1095,23 +1123,25 @@ function Home({ navigation,  route }) {
           <ScrollView horizontal>
             <View style={styles.stadium}>
               <View style={{ paddingLeft: wd * 0.04 }}>
-              <TouchableOpacity
+                <TouchableOpacity
                   onPress={() => {
                     navigation.navigate("ground", {
                       ground: "M. Chinnaswamy Stadium, Bengaluru",
-		                	data : arr.filter((it) =>  (it.Venue == "M. Chinnaswamy Stadium, Bengaluru" ) )
-                  	 .map((item) => {
-                   
-                      return (
-                        { year : item.year,
-                          team_1 : item.team_1,
-                          team_2 : item.team_2,
-                          date : item.date,
-                          Venue : item.Venue,
-                          won : item.wonBy
-                        }
-                        );
-                    })
+                      data: arr
+                        .filter(
+                          (it) =>
+                            it.Venue == "M. Chinnaswamy Stadium, Bengaluru"
+                        )
+                        .map((item) => {
+                          return {
+                            year: item.year,
+                            team_1: item.team_1,
+                            team_2: item.team_2,
+                            date: item.date,
+                            Venue: item.Venue,
+                            won: item.wonBy,
+                          };
+                        }),
                     });
                   }}
                 >
@@ -1123,23 +1153,26 @@ function Home({ navigation,  route }) {
                 </TouchableOpacity>
               </View>
               <View style={{ paddingLeft: wd * 0.04 }}>
-              <TouchableOpacity
+                <TouchableOpacity
                   onPress={() => {
                     navigation.navigate("ground", {
                       ground: "Rajiv Gandhi Intl. Cricket Stadium, Hyderabad",
-		                	data : arr.filter((it) =>  (it.Venue == "Rajiv Gandhi Intl. Cricket Stadium, Hyderabad" ) )
-                  	 .map((item) => {
-                   
-                      return (
-                        { year : item.year,
-                          team_1 : item.team_1,
-                          team_2 : item.team_2,
-                          date : item.date,
-                          Venue : item.Venue,
-                          won : item.wonBy
-                        }
-                        );
-                    })
+                      data: arr
+                        .filter(
+                          (it) =>
+                            it.Venue ==
+                            "Rajiv Gandhi Intl. Cricket Stadium, Hyderabad"
+                        )
+                        .map((item) => {
+                          return {
+                            year: item.year,
+                            team_1: item.team_1,
+                            team_2: item.team_2,
+                            date: item.date,
+                            Venue: item.Venue,
+                            won: item.wonBy,
+                          };
+                        }),
                     });
                   }}
                 >
@@ -1151,23 +1184,22 @@ function Home({ navigation,  route }) {
                 </TouchableOpacity>
               </View>
               <View style={{ paddingLeft: wd * 0.04 }}>
-              <TouchableOpacity
+                <TouchableOpacity
                   onPress={() => {
                     navigation.navigate("ground", {
                       ground: "Eden Gardens, Kolkata",
-		                	data : arr.filter((it) =>  (it.Venue == "Eden Gardens, Kolkata" ) )
-                  	 .map((item) => {
-                   
-                      return (
-                        { year : item.year,
-                          team_1 : item.team_1,
-                          team_2 : item.team_2,
-                          date : item.date,
-                          Venue : item.Venue,
-                          won : item.wonBy
-                        }
-                        );
-                    })
+                      data: arr
+                        .filter((it) => it.Venue == "Eden Gardens, Kolkata")
+                        .map((item) => {
+                          return {
+                            year: item.year,
+                            team_1: item.team_1,
+                            team_2: item.team_2,
+                            date: item.date,
+                            Venue: item.Venue,
+                            won: item.wonBy,
+                          };
+                        }),
                     });
                   }}
                 >
@@ -1179,23 +1211,27 @@ function Home({ navigation,  route }) {
                 </TouchableOpacity>
               </View>
               <View style={{ paddingLeft: wd * 0.04 }}>
-              <TouchableOpacity
+                <TouchableOpacity
                   onPress={() => {
                     navigation.navigate("ground", {
-                      ground: "Maharashtra Cricket Association's International Stadium, Pune",
-			data : arr.filter((it) =>  (it.Venue == "Maharashtra Cricket Association's International Stadium, Pune" ) )
-                  	 .map((item) => {
-                   
-                      return (
-                        { year : item.year,
-                          team_1 : item.team_1,
-                          team_2 : item.team_2,
-                          date : item.date,
-                          Venue : item.Venue,
-                          won : item.wonBy
-                        }
-                        );
-                    })
+                      ground:
+                        "Maharashtra Cricket Association's International Stadium, Pune",
+                      data: arr
+                        .filter(
+                          (it) =>
+                            it.Venue ==
+                            "Maharashtra Cricket Association's International Stadium, Pune"
+                        )
+                        .map((item) => {
+                          return {
+                            year: item.year,
+                            team_1: item.team_1,
+                            team_2: item.team_2,
+                            date: item.date,
+                            Venue: item.Venue,
+                            won: item.wonBy,
+                          };
+                        }),
                     });
                   }}
                 >
@@ -1207,23 +1243,26 @@ function Home({ navigation,  route }) {
                 </TouchableOpacity>
               </View>
               <View style={{ paddingLeft: wd * 0.04 }}>
-              <TouchableOpacity
+                <TouchableOpacity
                   onPress={() => {
                     navigation.navigate("ground", {
                       ground: "Saurashtra Cricket Association Stadium, Rajkot",
-			                data : arr.filter((it) =>  (it.Venue == "Saurashtra Cricket Association Stadium, Rajkot" ) )
-                  	 .map((item) => {
-                   
-                      return (
-                        { year : item.year,
-                          team_1 : item.team_1,
-                          team_2 : item.team_2,
-                          date : item.date,
-                          Venue : item.Venue,
-                          won : item.wonBy
-                        }
-                        );
-                    })
+                      data: arr
+                        .filter(
+                          (it) =>
+                            it.Venue ==
+                            "Saurashtra Cricket Association Stadium, Rajkot"
+                        )
+                        .map((item) => {
+                          return {
+                            year: item.year,
+                            team_1: item.team_1,
+                            team_2: item.team_2,
+                            date: item.date,
+                            Venue: item.Venue,
+                            won: item.wonBy,
+                          };
+                        }),
                     });
                   }}
                 >
@@ -1235,23 +1274,24 @@ function Home({ navigation,  route }) {
                 </TouchableOpacity>
               </View>
               <View style={{ paddingLeft: wd * 0.04 }}>
-              <TouchableOpacity
+                <TouchableOpacity
                   onPress={() => {
                     navigation.navigate("ground", {
                       ground: "Holkar Cricket Stadium, Indore",
-		                	data : arr.filter((it) =>  (it.Venue == "Holkar Cricket Stadium, Indore" ) )
-                  	 .map((item) => {
-                   
-                      return (
-                        { year : item.year,
-                          team_1 : item.team_1,
-                          team_2 : item.team_2,
-                          date : item.date,
-                          Venue : item.Venue,
-                          won : item.wonBy
-                        }
-                        );
-                    })
+                      data: arr
+                        .filter(
+                          (it) => it.Venue == "Holkar Cricket Stadium, Indore"
+                        )
+                        .map((item) => {
+                          return {
+                            year: item.year,
+                            team_1: item.team_1,
+                            team_2: item.team_2,
+                            date: item.date,
+                            Venue: item.Venue,
+                            won: item.wonBy,
+                          };
+                        }),
                     });
                   }}
                 >
@@ -1263,23 +1303,22 @@ function Home({ navigation,  route }) {
                 </TouchableOpacity>
               </View>
               <View style={{ paddingLeft: wd * 0.04 }}>
-              <TouchableOpacity
+                <TouchableOpacity
                   onPress={() => {
                     navigation.navigate("ground", {
-                      ground:  "Wankhede Stadium, Mumbai",
-			                data : arr.filter((it) =>  (it.Venue ==  "Wankhede Stadium, Mumbai"))
-                  	 .map((item) => {
-                   
-                      return (
-                        { year : item.year,
-                          team_1 : item.team_1,
-                          team_2 : item.team_2,
-                          date : item.date,
-                          Venue : item.Venue,
-                          won : item.wonBy
-                        }
-                        );
-                    })
+                      ground: "Wankhede Stadium, Mumbai",
+                      data: arr
+                        .filter((it) => it.Venue == "Wankhede Stadium, Mumbai")
+                        .map((item) => {
+                          return {
+                            year: item.year,
+                            team_1: item.team_1,
+                            team_2: item.team_2,
+                            date: item.date,
+                            Venue: item.Venue,
+                            won: item.wonBy,
+                          };
+                        }),
                     });
                   }}
                 >
@@ -1291,23 +1330,24 @@ function Home({ navigation,  route }) {
                 </TouchableOpacity>
               </View>
               <View style={{ paddingLeft: wd * 0.04, paddingRight: wd * 0.04 }}>
-              <TouchableOpacity
+                <TouchableOpacity
                   onPress={() => {
                     navigation.navigate("ground", {
-                      ground:  "Feroz Shah Kotla Ground, Delhi i",
-		                	data : arr.filter((it) =>  (it.Venue ==  "Feroz Shah Kotla Ground, Delhi i"))
-                  	 .map((item) => {
-                   
-                      return (
-                        { year : item.year,
-                          team_1 : item.team_1,
-                          team_2 : item.team_2,
-                          date : item.date,
-                          Venue : item.Venue,
-                          won : item.wonBy
-                        }
-                        );
-                    })
+                      ground: "Feroz Shah Kotla Ground, Delhi i",
+                      data: arr
+                        .filter(
+                          (it) => it.Venue == "Feroz Shah Kotla Ground, Delhi i"
+                        )
+                        .map((item) => {
+                          return {
+                            year: item.year,
+                            team_1: item.team_1,
+                            team_2: item.team_2,
+                            date: item.date,
+                            Venue: item.Venue,
+                            won: item.wonBy,
+                          };
+                        }),
                     });
                   }}
                 >
@@ -1334,7 +1374,7 @@ function Home({ navigation,  route }) {
         {/* Grounds Ends */}
       </ScrollView>
       {/* tabs buttons started*/}
-      {/* <View
+      <View
         style={{
           flexDirection: "row",
           justifyContent: "space-around",
@@ -1357,7 +1397,7 @@ function Home({ navigation,  route }) {
             <Text style={styles.yearstext}>2019</Text>
           </View>
         </TouchableOpacity>
-      </View> */}
+      </View> 
 
       {/* tabs buttons Ended */}
     </View>
@@ -1417,8 +1457,9 @@ const styles = StyleSheet.create({
   years: {
     borderWidth: 1,
     backgroundColor: "black",
-    width: wd * 0.35,
+    width: wd * 0.33,
     borderColor: "white",
+    borderRadius:ht*0.07
   },
   yearstext: {
     color: "white",
@@ -1427,3 +1468,13 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
 });
+
+function DrawerNav() {
+  return (
+    <NavigationContainer>
+      <Drawer.Navigator initialRouteName="homedrawer">
+        <Drawer.Screen name="homedrawer" component={Home} />
+      </Drawer.Navigator>
+    </NavigationContainer>
+  );
+}

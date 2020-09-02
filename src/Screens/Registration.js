@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -12,7 +12,7 @@ import {
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
 } from "react-native";
-
+import axios from "axios";
 const ht = Dimensions.get("window").height;
 const wd = Dimensions.get("window").width;
 
@@ -24,6 +24,31 @@ const DismissKeyboard = ({ children }) => (
 function Registration({ navigation }) {
   const keyboardVerticalOffset =
     Platform.OS === "android" ? -ht * 0.055 : -ht * 0.1;
+  const [fname, setFname] = useState("");
+  const [lname, setLname] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  async function getData() {
+    await axios
+      .post(
+        "http://192.168.1.146:4000/users/register  ",
+
+        {
+          firstName: fname,
+          lastName: lname,
+          username: username,
+          password: password,
+        }
+      )
+      .then((res) => {
+        alert("Successfully Created")
+        navigation.navigate("login");
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  }
+
   return (
     <DismissKeyboard>
       <KeyboardAvoidingView
@@ -47,8 +72,8 @@ function Registration({ navigation }) {
               style={styles.input}
               placeholder="Enter First Name"
               placeholderTextColor="orange"
-              //   onChangeText={(text) => onChangeText(text)}
-              //   value={value}
+              onChangeText={(text) => setFname(text)}
+              value={fname}
             />
           </View>
           <View style={styles.inputView}>
@@ -57,8 +82,8 @@ function Registration({ navigation }) {
               style={styles.input}
               placeholder="Enter Last Name"
               placeholderTextColor="orange"
-              //   onChangeText={(text) => onChangeText(text)}
-              //   value={value}
+              onChangeText={(text) => setLname(text)}
+              value={lname}
             />
           </View>
           <View style={styles.inputView}>
@@ -67,8 +92,8 @@ function Registration({ navigation }) {
               style={styles.input}
               placeholder="Enter Email Id"
               placeholderTextColor="orange"
-              //   onChangeText={(text) => onChangeText(text)}
-              //   value={value}
+              onChangeText={(text) => setUsername(text)}
+              value={username}
             />
           </View>
           <View style={styles.inputView}>
@@ -77,14 +102,23 @@ function Registration({ navigation }) {
               style={styles.input}
               placeholder="Enter Password"
               placeholderTextColor="orange"
-              //   onChangeText={(text) => onChangeText(text)}
-              //   value={value}
+              onChangeText={(text) => setPassword(text)}
+              value={password}
             />
           </View>
           <View style={{ alignSelf: "center", marginTop: ht * 0.02 }}>
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate("login");
+                if (
+                  fname == "" ||
+                  lname == "" ||
+                  username == "" ||
+                  password == ""
+                ) {
+                  alert("Fields Must be Filled");
+                } else {
+                  getData();
+                }
               }}
               style={styles.button}
             >
