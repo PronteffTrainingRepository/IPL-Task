@@ -766,104 +766,104 @@ const wd = Dimensions.get("window").width;
 
 export default function App() {
   return (
-    // <NavigationContainer>
-    //   <Stack.Navigator initialRouteName="login">
-    //     <Stack.Screen
-    //       name="login"
-    //       component={Login}
-    //       options={{
-    //         title: "LOGIN",
-    //         headerStyle: {
-    //           backgroundColor: "#4D4F79",
-    //         },
-    //         headerTintColor: "#fff",
-    //         headerTitleAlign: "center",
-    //       }}
-    //     />
-    //     <Stack.Screen
-    //       name="home"
-    //       component={Homes}
-    //       options={{
-    //         title: "My Home",
-    //         headerLeft: null,
-    //         headerStyle: {
-    //           backgroundColor: "#f4511e",
-    //         },
-    //         headerTintColor: "#fff",
-    //         headerTitleAlign: "center",
-    //         headerTitleStyle: {
-    //           fontWeight: "bold",
-    //         },
-    //       }}
-    //     />
-    //     <Stack.Screen
-    //       name="result"
-    //       component={Result}
-    //       options={{
-    //         title: "Match Result",
-    //         headerStyle: {
-    //           backgroundColor: "#4D4F79",
-    //         },
-    //         headerTintColor: "#fff",
-    //         headerTitleAlign: "center",
-    //         headerTitleStyle: {
-    //           fontWeight: "bold",
-    //         },
-    //       }}
-    //     />
-    //     <Stack.Screen
-    //       name="stats"
-    //       component={Homes2}
-    //       options={{
-    //         title: "Statistics",
-    //         headerStyle: {
-    //           backgroundColor: "#4D4F79",
-    //         },
-    //         headerTintColor: "#fff",
-    //         headerTitleAlign: "center",
-    //       }}
-    //     />
-    //     <Stack.Screen
-    //       name="ground"
-    //       component={Ground}
-    //       options={{
-    //         title: "Matches in Stadium",
-    //         headerStyle: {
-    //           backgroundColor: "#4D4F79",
-    //         },
-    //         headerTintColor: "#fff",
-    //         headerTitleAlign: "center",
-    //       }}
-    //     />
-    //     <Stack.Screen
-    //       name="team"
-    //       component={Team}
-    //       options={{
-    //         title: "Matches Team Played",
-    //         headerStyle: {
-    //           backgroundColor: "#4D4F79",
-    //         },
-    //         headerTintColor: "#fff",
-    //         headerTitleAlign: "center",
-    //       }}
-    //     />
-    //     <Stack.Screen
-    //       name="registration"
-    //       component={Registration}
-    //       options={{ headerShown: false }}
-    //     />
-    // <Stack.Screen
-    //       name="update"
-    //       component={Update}
-    //       options={{ headerShown: false }}
-    //     />
-    //   </Stack.Navigator>
-    // </NavigationContainer>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="login">
+        <Stack.Screen
+          name="login"
+          component={Login}
+          options={{
+            title: "LOGIN",
+            headerStyle: {
+              backgroundColor: "#4D4F79",
+            },
+            headerTintColor: "#fff",
+            headerTitleAlign: "center",
+          }}
+        />
+        <Stack.Screen
+          name="home"
+          component={Homes}
+          options={{
+            title: "My Home",
+            headerLeft: null,
+            headerStyle: {
+              backgroundColor: "#f4511e",
+            },
+            headerTintColor: "#fff",
+            headerTitleAlign: "center",
+            headerTitleStyle: {
+              fontWeight: "bold",
+            },
+          }}
+        />
+        <Stack.Screen
+          name="result"
+          component={Result}
+          options={{
+            title: "Match Result",
+            headerStyle: {
+              backgroundColor: "#4D4F79",
+            },
+            headerTintColor: "#fff",
+            headerTitleAlign: "center",
+            headerTitleStyle: {
+              fontWeight: "bold",
+            },
+          }}
+        />
+        <Stack.Screen
+          name="stats"
+          component={Homes2}
+          options={{
+            title: "Statistics",
+            headerStyle: {
+              backgroundColor: "#4D4F79",
+            },
+            headerTintColor: "#fff",
+            headerTitleAlign: "center",
+          }}
+        />
+        <Stack.Screen
+          name="ground"
+          component={Ground}
+          options={{
+            title: "Matches in Stadium",
+            headerStyle: {
+              backgroundColor: "#4D4F79",
+            },
+            headerTintColor: "#fff",
+            headerTitleAlign: "center",
+          }}
+        />
+        <Stack.Screen
+          name="team"
+          component={Team}
+          options={{
+            title: "Matches Team Played",
+            headerStyle: {
+              backgroundColor: "#4D4F79",
+            },
+            headerTintColor: "#fff",
+            headerTitleAlign: "center",
+          }}
+        />
+        <Stack.Screen
+          name="registration"
+          component={Registration}
+          options={{ headerShown: false }}
+        />
+    <Stack.Screen
+          name="update"
+          component={Update}
+          options={{ headerShown: false }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
 
-    <View style={styles.container}>
-      <Registration />
-      <StatusBar style="auto" />
-    </View>
+    // <View style={styles.container}>
+    //   <Registration />
+    //   <StatusBar style="auto" />
+    // </View>
   );
 }
 
