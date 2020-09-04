@@ -15,6 +15,7 @@ import {
 import { Dimensions } from "react-native";
 import Home from "./Home";
 import axios from "axios";
+import AsyncStorage from '@react-native-community/async-storage';
 const ht = Dimensions.get("window").height;
 const wd = Dimensions.get("window").width;
 const DismissKeyboard = ({ children }) => (
@@ -25,22 +26,23 @@ const DismissKeyboard = ({ children }) => (
 function Login({ navigation }) {
   const [name, onChangeText] = React.useState("Useless Placeholder");
   const [password, onChangePassword] = React.useState("Useless Placeholder");
-
+  const [id, setId] = useState("")
   async function getData() {
-    console.log({ username: name, password: password });
     await axios
       .post(
         "http://192.168.1.146:4000/users/authenticate",
 
         { username: name, password: password }
       )
-      .then((res) => {
+      .then((res) => {   
+        setId()
         navigation.navigate("home");
       })
       .catch((err) => {
-        console.log(err);;
+        alert(err);
       });
   }
+
 
   const keyboardVerticalOffset =
     Platform.OS === "android" ? -ht * 0.038 : -ht * 0.1;

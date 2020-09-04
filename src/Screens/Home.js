@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -6,12 +6,13 @@ import {
   Image,
   StyleSheet,
   Dimensions,
+  StatusBar,
 } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { AntDesign } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-
+import { Fontisto } from "@expo/vector-icons";
 import Result from "./Result";
 import Team from "./Team";
 const ht = Dimensions.get("window").height;
@@ -774,7 +775,7 @@ function Home({ navigation, route }) {
     [navigation]
   );
   const [count, setCount] = useState(2017);
-  const [data, setData] = useState([arr])
+  const [data, setData] = useState([arr]);
 
   return (
     <View style={styles.container}>
@@ -789,6 +790,56 @@ function Home({ navigation, route }) {
       >
         <Text style={{ color: "white" }}>open</Text>
       </View> */}
+      {
+        // useEffect(() => {
+        //     console.log(idName);
+        //     console.log(typeof idName);
+        // }, [])
+      }
+      <StatusBar barStyle="light-content" backgroundColor="black" />
+      <View
+        style={{
+          width: wd * 1,
+          height: ht * 0.07,
+          backgroundColor: "#f4511e",
+          position: "relative",
+          elevation: 50,
+          flexDirection: "row",
+          alignContent: "center",
+        }}
+      >
+        <View>
+          <TouchableOpacity
+            onPress={() => navigation.toggleDrawer()}
+            style={{
+              marginTop: ht * 0.017,
+              marginLeft: wd * 0.06,
+            }}
+          >
+            <Fontisto
+              name="nav-icon-a"
+              size={22}
+              color="white"
+              style={{
+                marginTop: ht * 0.003,
+              }}
+            />
+          </TouchableOpacity>
+        </View>
+
+        <Text
+          style={{
+            color: "white",
+            fontWeight: "bold",
+            fontSize: ht * 0.04,
+            marginLeft: wd * 0.25,
+            marginTop: ht * 0.005,
+          }}
+        >
+          Home
+        </Text>
+      </View>
+
       <ScrollView>
         {/* Teams Cards Started */}
         <View
@@ -851,7 +902,7 @@ function Home({ navigation, route }) {
               />
               <Text style={styles.teamname}>CSK</Text>
             </TouchableOpacity>
-            <TouchableOpacity     
+            <TouchableOpacity
               onPress={() => {
                 {
                   navigation.navigate("team", {
@@ -1397,7 +1448,7 @@ function Home({ navigation, route }) {
             <Text style={styles.yearstext}>2019</Text>
           </View>
         </TouchableOpacity>
-      </View> 
+      </View>
 
       {/* tabs buttons Ended */}
     </View>
@@ -1459,7 +1510,7 @@ const styles = StyleSheet.create({
     backgroundColor: "black",
     width: wd * 0.33,
     borderColor: "white",
-    borderRadius:ht*0.07
+    borderRadius: ht * 0.07,
   },
   yearstext: {
     color: "white",

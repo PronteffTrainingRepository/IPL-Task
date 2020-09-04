@@ -35,7 +35,7 @@ function Registration({ navigation }) {
 
         {
           firstName: fname,
-          lastName: lname,
+        lastName: lname,
           username: username,
           password: password,
         }

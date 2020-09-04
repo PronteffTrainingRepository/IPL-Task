@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -12,7 +12,7 @@ import {
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
 } from "react-native";
-
+import axios from "axios";
 const ht = Dimensions.get("window").height;
 const wd = Dimensions.get("window").width;
 
@@ -23,7 +23,30 @@ const DismissKeyboard = ({ children }) => (
 );
 function Update({ navigation }) {
   const keyboardVerticalOffset =
-    Platform.OS === "android" ? -ht * 0.055 : -ht * 0.1;
+    Platform.OS === "android" ? -ht * 0.2 : -ht * 0.1;
+
+  const [fname, setFname] = useState("");
+  const [lname, setLname] = useState("");
+  const [username, setUsername] = useState("");
+  //const [password, setPassword] = useState("");
+
+  async function getData({ navigation }) {
+    console.log({ firstName: name, lastName: password });
+    await axios
+      .put(
+        "http://192.168.1.146:4000/users/5f4e2ab63531ce4eb4d658dd ",
+
+        { firstName: fname, lastName: lname }
+      )
+      .then((res) => {
+        alert("Update Successfully");
+      })
+      .catch((err) => {
+        alert(err);
+        console.log(err);
+      });
+  }
+
   return (
     <DismissKeyboard>
       <KeyboardAvoidingView
@@ -38,35 +61,14 @@ function Update({ navigation }) {
               source={require("../../assets/Profileicon.png")}
             />
           </View>
-
-          <View style={styles.inputView}>
-            <Text style={styles.inputText}>Email Id</Text>
-            <TextInput
-              style={styles.input}
-              placeholder="Edit Email Id"
-              placeholderTextColor="orange"
-              //   onChangeText={(text) => onChangeText(text)}
-              //   value={value}
-            />
-          </View>
-          <View style={styles.inputView}>
-            <Text style={styles.inputText}>Password</Text>
-            <TextInput
-              style={styles.input}
-              placeholder="Edit Password"
-              placeholderTextColor="orange"
-              //   onChangeText={(text) => onChangeText(text)}
-              //   value={value}
-            />
-          </View>
           <View style={styles.inputView}>
             <Text style={styles.inputText}>First Name</Text>
             <TextInput
               style={styles.input}
               placeholder="Edit First Name"
               placeholderTextColor="orange"
-              //   onChangeText={(text) => onChangeText(text)}
-              //   value={value}
+              onChangeText={(text) => setFname(text)}
+              value={fname}
             />
           </View>
           <View style={styles.inputView}>
@@ -75,10 +77,31 @@ function Update({ navigation }) {
               style={styles.input}
               placeholder="Edit Last Name"
               placeholderTextColor="orange"
-              //   onChangeText={(text) => onChangeText(text)}
-              //   value={value}
+              onChangeText={(text) => setLname(text)}
+              value={lname}
             />
           </View>
+          <View style={styles.inputView}>
+            <Text style={styles.inputText}>Username</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="Edit Email Id"
+              placeholderTextColor="orange"
+              onChangeText={(text) => setUsername(text)}
+              value={username}
+            />
+          </View>
+          {/* <View style={styles.inputView}>
+            <Text style={styles.inputText}>Password</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="Edit Password"
+              placeholderTextColor="orange"
+              onChangeText={(text) => setPassword(text)}
+              value={password}
+            />
+          </View> */}
+
           <View
             style={{
               alignSelf: "flex-end",
@@ -87,8 +110,14 @@ function Update({ navigation }) {
             }}
           >
             <TouchableOpacity
-              onPress={() => {
-                navigation.navigate("login");
+              onPress={(e) => {
+                if (lname == "" || fname == "" || username == "") {
+                  alert("Input Fields Can't be Empty");
+                } else {
+                  
+                  alert("information updated");
+                  navigation.navigate("homedrawer");
+                }
               }}
               style={styles.button}
             >

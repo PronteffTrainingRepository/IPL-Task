@@ -26,6 +26,7 @@ import Team from "./src/Screens/Team";
 import Registration from "./src/Screens/Registration";
 import Update from "./src/Screens/Update";
 import { AntDesign } from "@expo/vector-icons";
+import AllUsers from "./src/Screens/AllUsers";
 
 const arr = [
   {
@@ -926,7 +927,7 @@ export default function App({ navigation }) {
     </NavigationContainer>
 
     // <View style={styles.container}>
-    //   <Registration />
+    //   <AllUsers />
     //   <StatusBar style="auto" />
     // </View>
   );
@@ -1011,16 +1012,27 @@ const DrawerNav = ({ navigation }) => {
       <Drawer.Screen
         name="homedrawer"
         component={Home}
-        options={{ headerShown: false }}
+        options={{ drawerLabel: "Drawer Nav" }}
       />
       <Drawer.Screen name="createteam" component={Home} />
+
+      <Drawer.Screen
+        name="allusers"
+        component={AllUsers}
+        options={{ swipeEnabled: false }}
+      />
       <Drawer.Screen
         name="profile"
         component={Update}
-        options={{ title: "Profile screen" }}
+        options={{
+          swipeEnabled: false,
+        }}
       />
-
-      <Drawer.Screen name="LOGOUT" component={Login} />
+      <Drawer.Screen
+        name="LOGOUT"
+        component={Login}
+        options={{ swipeEnabled: false }}
+      />
     </Drawer.Navigator>
   );
 };
