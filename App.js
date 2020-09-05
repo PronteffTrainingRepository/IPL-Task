@@ -27,7 +27,7 @@ import Registration from "./src/Screens/Registration";
 import Update from "./src/Screens/Update";
 import { AntDesign } from "@expo/vector-icons";
 import AllUsers from "./src/Screens/AllUsers";
-
+import Try from "./src/Screens/Try";
 const arr = [
   {
     year: "2017",
@@ -927,7 +927,7 @@ export default function App({ navigation }) {
     </NavigationContainer>
 
     // <View style={styles.container}>
-    //   <AllUsers />
+    //   <Try />
     //   <StatusBar style="auto" />
     // </View>
   );
@@ -937,8 +937,9 @@ const styles = StyleSheet.create({
   container: {
     // flex: 1,
     // backgroundColor: "#4D4F79",
-    // alignItems: 'center',
-    // justifyContent: 'center',
+    alignItems: "center",
+    //  justifyContent: 'center',
+    marginTop: 80,
   },
 });
 // const Tab = createBottomTabNavigator();

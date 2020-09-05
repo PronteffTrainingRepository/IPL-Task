@@ -12,7 +12,7 @@ import {
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
 } from "react-native";
-import axios from "axios";
+import Axios from "axios";
 const ht = Dimensions.get("window").height;
 const wd = Dimensions.get("window").width;
 
@@ -21,32 +21,73 @@ const DismissKeyboard = ({ children }) => (
     {children}
   </TouchableWithoutFeedback>
 );
+const initialValues = {
+  username: "",
+  firstName: "",
+  lastName: "",
+};
 function Update({ navigation }) {
   const keyboardVerticalOffset =
     Platform.OS === "android" ? -ht * 0.2 : -ht * 0.1;
 
-  const [fname, setFname] = useState("");
-  const [lname, setLname] = useState("");
-  const [username, setUsername] = useState("");
-  //const [password, setPassword] = useState("");
+  let [values, setvalues] = useState(initialValues);
+  let [token, settoken] = useState("");
+  let [id, setid] = useState("");
 
-  async function getData({ navigation }) {
-    console.log({ firstName: name, lastName: password });
-    await axios
-      .put(
-        "http://192.168.1.146:4000/users/5f4e2ab63531ce4eb4d658dd ",
-
-        { firstName: fname, lastName: lname }
-      )
+  const GetData = async () => {
+    const asyncid = await AsyncStorage.getItem("id");
+    let Id = JSON.parse(asyncid);
+    setid(Id);
+    console.log(Id);
+    const asynctoken = await AsyncStorage.getItem("token");
+    let Token = JSON.parse(asynctoken);
+    settoken(Token);
+    console.log(Token);
+    await Axios.get(`http://192.168.1.146:4000/users/${id}`, {
+      headers: {
+        Authorization: `bearer ${token}`,
+      },
+    })
       .then((res) => {
-        alert("Update Successfully");
+        console.log(res.data);
+        setvalues(res.data);
       })
       .catch((err) => {
         alert(err);
-        console.log(err);
       });
-  }
+  };
 
+  useEffect(() => {
+    GetData();
+  }, []);
+
+  const update = async () => {
+    await Axios.put(`http://192.168.1.146:4000/users/${id}`, values, {
+      headers: {
+        contentType: "application/json",
+        Authorization: `bearer ${token}`,
+      },
+    })
+      .then((res) => {
+        console.log(res.data);
+        alert("user Updation Done!");
+      })
+      .catch((err) => alert("something went wrong", err));
+  };
+  const Delete = async () => {
+    await Axios.delete(`http://192.168.1.146:4000/users/${id}`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `bearer ${token}`,
+      },
+    })
+      .then((res) => {
+        console.log(res.data);
+        alert("user Deleted Done!");
+        navigation.navigate("login");
+      })
+      .catch((err) => alert("something went wrong", err));
+  };
   return (
     <DismissKeyboard>
       <KeyboardAvoidingView
@@ -65,30 +106,27 @@ function Update({ navigation }) {
             <Text style={styles.inputText}>First Name</Text>
             <TextInput
               style={styles.input}
-              placeholder="Edit First Name"
-              placeholderTextColor="orange"
-              onChangeText={(text) => setFname(text)}
-              value={fname}
+              value={values.firstName}
+              name="firstName"
+              onChangeText={(e) => handleChange(e, "firstName")}
             />
           </View>
           <View style={styles.inputView}>
             <Text style={styles.inputText}>Last Name</Text>
             <TextInput
               style={styles.input}
-              placeholder="Edit Last Name"
-              placeholderTextColor="orange"
-              onChangeText={(text) => setLname(text)}
-              value={lname}
+              onChangeText={(e) => handleChange(e, "lastName")}
+              value={values.lastName}
+              name="lastName"
             />
           </View>
           <View style={styles.inputView}>
             <Text style={styles.inputText}>Username</Text>
             <TextInput
               style={styles.input}
-              placeholder="Edit Email Id"
-              placeholderTextColor="orange"
-              onChangeText={(text) => setUsername(text)}
-              value={username}
+              name="username"
+              editable={false}
+              value={values.username}
             />
           </View>
           {/* <View style={styles.inputView}>
@@ -114,9 +152,8 @@ function Update({ navigation }) {
                 if (lname == "" || fname == "" || username == "") {
                   alert("Input Fields Can't be Empty");
                 } else {
-                  
                   alert("information updated");
-                  navigation.navigate("homedrawer");
+                  update();
                 }
               }}
               style={styles.button}
@@ -132,6 +169,9 @@ function Update({ navigation }) {
               </Text>
             </TouchableOpacity>
           </View>
+          <TouchableOpacity onPress={() => Delete()}>
+            <Text>Delete</Text>
+          </TouchableOpacity>
         </View>
         <StatusBar barStyle="light-content" backgroundColor="#4D4F79" />
       </KeyboardAvoidingView>

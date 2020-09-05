@@ -26,7 +26,7 @@ const DismissKeyboard = ({ children }) => (
 function Login({ navigation }) {
   const [name, onChangeText] = React.useState("Useless Placeholder");
   const [password, onChangePassword] = React.useState("Useless Placeholder");
-  const [id, setId] = useState("")
+  let token, id;
   async function getData() {
     await axios
       .post(
@@ -34,12 +34,17 @@ function Login({ navigation }) {
 
         { username: name, password: password }
       )
-      .then((res) => {   
-        setId()
+      .then(async (res) => {
+        console.log(res.data);
+        token = res.data.token;      
+        const jsontoken = JSON.stringify(res.data.token);
+        await AsyncStorage.setItem("token", jsontoken);
+        const jsonid = JSON.stringify(res.data.id);
+        await AsyncStorage.setItem("id", jsonid);
         navigation.navigate("home");
       })
-      .catch((err) => {
-        alert(err);
+      .catch((message) => {
+        alert(message);
       });
   }
 
