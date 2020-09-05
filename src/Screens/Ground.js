@@ -12,15 +12,15 @@ const ht = Dimensions.get("window").height;
 const wd = Dimensions.get("window").width;
 
 function Ground({ route, navigation }) {
- 
-  const { ground,data } = route.params;
+  const { ground, data } = route.params;
   return (
     <View style={styles.container}>
       <ScrollView>
         {data
           .filter((it) => it.Venue == ground)
-          .map((item) => (
+          .map((item, index) => (
             <TouchableOpacity
+              key={index}
               onPress={() => {
                 navigation.navigate("result", {
                   team1: item.team_1,
@@ -32,7 +32,7 @@ function Ground({ route, navigation }) {
                 });
               }}
             >
-              <View key={item.date} style={styles.card}>
+              <View key={index} style={styles.card}>
                 <Text style={styles.info}>Team 1 :{item.team_1}</Text>
                 <Text style={styles.info}>Team 2 :{item.team_2}</Text>
                 <Text style={styles.info}>Venue :{item.Venue}</Text>

@@ -23,6 +23,9 @@
       "favicon": "./assets/favicon.png"
     },
     "description": "1.0.1",
-    "githubUrl": "https://github.com/PronteffTrainingRepository/Shubham_IPL"
+    "githubUrl": "https://github.com/PronteffTrainingRepository/Shubham_IPL",
+    "android": {
+      "package": "com.sravanreddyvudem.IPL"
+    }
   }
 }

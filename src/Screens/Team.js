@@ -12,19 +12,19 @@ const ht = Dimensions.get("window").height;
 const wd = Dimensions.get("window").width;
 
 function Team({ route, navigation }) {
-  const { teams,data } = route.params;
-  
+  const { teams, data } = route.params;
+
   let [total1, setTotal1] = useState(0);
   let [total2, setTotal2] = useState(0);
   let [total3, setTota13] = useState(0);
   let [won1, setWon1] = useState(0);
   let [won2, setWon2] = useState(0);
   let [won3, setWon3] = useState(0);
- 
+
   useEffect(() => {
     total1 = 0;
     total2 = 0;
-    total3 = 0;    
+    total3 = 0;
     data.map((item) => {
       if (item.year == 2017 && (item.team_1 == teams || item.team_2 == teams)) {
         return setTotal1((total1 += 1));
@@ -79,31 +79,31 @@ function Team({ route, navigation }) {
       </View>
       <View>
         <ScrollView horizontal>
-          {data.map((item) => (
-              <TouchableOpacity
-                onPress={() => {
-                  navigation.navigate("result", {
-                    team1 :item.team_1,
-                    team2: item.team_2,
-                    venue: item.Venue,
-                    date: item.date,
-                    years: item.year,
-                    won: item.won,
-                  });
-                }}
-              >
-                <View  style={styles.card}>
-                  <Text style={styles.info}>Team 1 :{item.team_1}</Text>
-                  <Text style={styles.info}>Team 2 :{item.team_2}</Text>
-                  <Text style={styles.info}>Venue :{item.Venue}</Text>
-                  <Text style={styles.info}>Winner :{item.won}</Text>
-                  <Text style={styles.info}>Year :{item.year}</Text>
-                </View>
-              </TouchableOpacity>
-            ))}
-          
-      </ScrollView>
-      </View> 
+          {data.map((item, index) => (
+            <TouchableOpacity
+              key={index}
+              onPress={() => {
+                navigation.navigate("result", {
+                  team1: item.team_1,
+                  team2: item.team_2,
+                  venue: item.Venue,
+                  date: item.date,
+                  years: item.year,
+                  won: item.won,
+                });
+              }}
+            >
+              <View style={styles.card}>
+                <Text style={styles.info}>Team 1 :{item.team_1}</Text>
+                <Text style={styles.info}>Team 2 :{item.team_2}</Text>
+                <Text style={styles.info}>Venue :{item.Venue}</Text>
+                <Text style={styles.info}>Winner :{item.won}</Text>
+                <Text style={styles.info}>Year :{item.year}</Text>
+              </View>
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
+      </View>
 
       <View style={styles.table}>
         <View
@@ -136,7 +136,7 @@ function Team({ route, navigation }) {
           <Text style={styles.contentdata}>{total3 - won3}</Text>
         </View>
       </View>
-    </View> 
+    </View>
   );
 }
 

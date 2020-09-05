@@ -10,6 +10,8 @@ import Result from "./src/Screens/Result";
 import Stats from "./src/Screens/Stats";
 import Ground from "./src/Screens/Ground";
 import Team from "./src/Screens/Team";
+import Profile from "./src/Screens/Profile";
+import Registration from "./src/Screens/Registration";
 
 const arr = [
   {
@@ -796,6 +798,21 @@ export default function App() {
           }}
         />
         <Stack.Screen
+          name="Registration"
+          component={Registration}
+          options={{
+            headerLeft: null,
+            headerStyle: {
+              backgroundColor: "#f4511e",
+            },
+            headerTintColor: "#fff",
+            headerTitleAlign: "center",
+            headerTitleStyle: {
+              fontWeight: "bold",
+            },
+          }}
+        />
+        <Stack.Screen
           name="result"
           component={Result}
           options={{
@@ -822,6 +839,7 @@ export default function App() {
             headerTitleAlign: "center",
           }}
         />
+
         <Stack.Screen
           name="ground"
           component={Ground}
@@ -837,6 +855,7 @@ export default function App() {
         <Stack.Screen
           name="team"
           component={Team}
+          data={arr}
           options={{
             title: "Matches Team Played",
             headerStyle: {
@@ -871,12 +890,11 @@ function Homes() {
   return (
     <Tab.Navigator
       initialRouteName="2017"
-
       tabBarOptions={{
         labelStyle: {
           justifyContent: "center",
           alignContent: "center",
-          fontSize: ht*0.04,
+          fontSize: ht * 0.04,
           fontWeight: "bold",
         },
         tabStyle: {
@@ -884,7 +902,7 @@ function Homes() {
           alignContent: "center",
           borderWidth: 0.5,
           borderColor: "white",
-          borderRadius:40,
+          borderRadius: 40,
         },
         activeTintColor: "white",
         activeBackgroundColor: "#8459B5",
@@ -895,6 +913,7 @@ function Homes() {
       <Tab.Screen name="2017" component={Home} />
       <Tab.Screen name="2018" component={Home} />
       <Tab.Screen name="2019" component={Home} />
+      <Tab.Screen name="Profile" component={Profile} />
     </Tab.Navigator>
   );
 }
@@ -922,9 +941,9 @@ function Homes2() {
         inactiveTintColor: "white",
       }}
     >
-      <Tab.Screen name="2017" component={Stats}   />
-      <Tab.Screen name="2018" component={Stats}   />
-      <Tab.Screen name="2019" component={Stats}   />
+      <Tab.Screen name="2017" component={Stats} />
+      <Tab.Screen name="2018" component={Stats} />
+      <Tab.Screen name="2019" component={Stats} />
     </Tab.Navigator>
   );
 }
