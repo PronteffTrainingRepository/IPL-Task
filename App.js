@@ -1018,12 +1018,12 @@ const DrawerNav = ({ navigation }) => {
       <Drawer.Screen name="createteam" component={Home} />
 
       <Drawer.Screen
-        name="allusers"
+        name="AllUsers"
         component={AllUsers}
         options={{ swipeEnabled: false }}
       />
       <Drawer.Screen
-        name="profile"
+        name="Profile"
         component={Update}
         options={{
           swipeEnabled: false,

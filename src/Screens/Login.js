@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   StyleSheet,
@@ -15,7 +15,7 @@ import {
 import { Dimensions } from "react-native";
 import Home from "./Home";
 import axios from "axios";
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from "@react-native-community/async-storage";
 const ht = Dimensions.get("window").height;
 const wd = Dimensions.get("window").width;
 const DismissKeyboard = ({ children }) => (
@@ -24,6 +24,13 @@ const DismissKeyboard = ({ children }) => (
   </TouchableWithoutFeedback>
 );
 function Login({ navigation }) {
+   React.useEffect(
+     () =>
+       navigation.addListener("beforeRemove", (e) => {
+         e.preventDefault();
+       }),
+     [navigation]
+   );
   const [name, onChangeText] = React.useState("Useless Placeholder");
   const [password, onChangePassword] = React.useState("Useless Placeholder");
   let token, id;
@@ -36,7 +43,7 @@ function Login({ navigation }) {
       )
       .then(async (res) => {
         console.log(res.data);
-        token = res.data.token;      
+        token = res.data.token;
         const jsontoken = JSON.stringify(res.data.token);
         await AsyncStorage.setItem("token", jsontoken);
         const jsonid = JSON.stringify(res.data.id);
@@ -48,9 +55,9 @@ function Login({ navigation }) {
       });
   }
 
-
   const keyboardVerticalOffset =
     Platform.OS === "android" ? -ht * 0.038 : -ht * 0.1;
+  const [col, setCol] = useState("#4D4F79");
   return (
     <DismissKeyboard>
       <KeyboardAvoidingView
@@ -86,6 +93,10 @@ function Login({ navigation }) {
               color: "white",
             }}
             onChangeText={(text) => onChangeText(text)}
+            // autoFocus={true}
+            // clearTextOnFocus={true}
+            // defaultValue="shubham"
+            // editable={false}
           />
         </View>
         <View style={{ marginBottom: ht * 0.03 }}>

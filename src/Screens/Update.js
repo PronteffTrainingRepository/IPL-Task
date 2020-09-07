@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -13,6 +13,8 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 import Axios from "axios";
+import AsyncStorage from "@react-native-community/async-storage";
+
 const ht = Dimensions.get("window").height;
 const wd = Dimensions.get("window").width;
 
@@ -61,6 +63,13 @@ function Update({ navigation }) {
     GetData();
   }, []);
 
+  const handleChange = (e, name) => {
+    setvalues({
+      ...values,
+      [name]: e,
+    });
+  };
+
   const update = async () => {
     await Axios.put(`http://192.168.1.146:4000/users/${id}`, values, {
       headers: {
@@ -96,10 +105,19 @@ function Update({ navigation }) {
         style={styles.container}
       >
         <View style={styles.container}>
-          <View style={{ marginTop: ht * 0.04 }}>
+          <View style={styles.img}>
             <Image
               style={styles.logo}
               source={require("../../assets/Profileicon.png")}
+            />
+          </View>
+          <View style={styles.inputView}>
+            <Text style={styles.inputText}>Username</Text>
+            <TextInput
+              style={styles.input}
+              name="username"
+              editable={false}
+              value={values.username}
             />
           </View>
           <View style={styles.inputView}>
@@ -120,15 +138,6 @@ function Update({ navigation }) {
               name="lastName"
             />
           </View>
-          <View style={styles.inputView}>
-            <Text style={styles.inputText}>Username</Text>
-            <TextInput
-              style={styles.input}
-              name="username"
-              editable={false}
-              value={values.username}
-            />
-          </View>
           {/* <View style={styles.inputView}>
             <Text style={styles.inputText}>Password</Text>
             <TextInput
@@ -139,39 +148,61 @@ function Update({ navigation }) {
               value={password}
             />
           </View> */}
-
           <View
-            style={{
-              alignSelf: "flex-end",
-              marginTop: ht * 0.02,
-              marginRight: wd * 0.07,
-            }}
+            style={{ flexDirection: "row", justifyContent: "space-between" }}
           >
-            <TouchableOpacity
-              onPress={(e) => {
-                if (lname == "" || fname == "" || username == "") {
-                  alert("Input Fields Can't be Empty");
-                } else {
-                  alert("information updated");
-                  update();
-                }
+            <View
+              style={{
+                alignSelf: "flex-start",
+                marginTop: ht * 0.02,
+                marginLeft: wd * 0.07,
               }}
-              style={styles.button}
             >
-              <Text
-                style={{
-                  color: "white",
-                  fontSize: ht * 0.04,
-                  textAlign: "center",
+              <TouchableOpacity style={styles.button} onPress={() => Delete()}>
+                <Text
+                  style={{
+                    color: "white",
+                    fontSize: ht * 0.04,
+                    textAlign: "center",
+                  }}
+                >
+                  Delete
+                </Text>
+              </TouchableOpacity>
+            </View>
+            <View
+              style={{
+                alignSelf: "flex-end",
+                marginTop: ht * 0.02,
+                marginRight: wd * 0.07,
+              }}
+            >
+              <TouchableOpacity
+                onPress={(e) => {
+                  if (
+                    values.firstName == "" ||
+                    values.lastName == ""
+                  ) {
+                    alert("Input Fields Can't be Empty");
+                  } else {
+                    alert("information updated");
+                    update();
+                  }
                 }}
+                style={styles.button}
               >
-                Update
-              </Text>
-            </TouchableOpacity>
+                <Text
+                  style={{
+                    color: "white",
+                    fontSize: ht * 0.04,
+                    textAlign: "center",
+                  }}
+                >
+                  Update
+                </Text>
+              </TouchableOpacity>
+            </View>
           </View>
-          <TouchableOpacity onPress={() => Delete()}>
-            <Text>Delete</Text>
-          </TouchableOpacity>
         </View>
         <StatusBar barStyle="light-content" backgroundColor="#4D4F79" />
       </KeyboardAvoidingView>
@@ -182,12 +213,14 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#4D4F79",
     height: ht * 1,
+    flexDirection: "column",
   },
   logo: {
     width: wd * 0.35,
     height: wd * 0.35,
-    borderRadius: 40,
+    borderRadius: ht * 0.1,
     alignSelf: "center",
+    backgroundColor: "white",
   },
   inputView: {
     alignSelf: "center",
@@ -220,6 +253,11 @@ const styles = StyleSheet.create({
     height: ht * 0.07,
     borderRadius: 30,
     marginTop: ht * 0.03,
+  },
+  img: {
+    borderRadius: ht * 0.1,
+    justifyContent: "center",
+    marginTop: ht * 0.04,
   },
 });
 export default Update;
