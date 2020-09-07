@@ -17,7 +17,9 @@ const ht = Dimensions.get("window").height;
 const wd = Dimensions.get("window").width;
 
 const DismissKeyboard = ({ children }) => (
-  <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+  <TouchableWithoutFeedback
+    onPress={() => Keyboard.dismiss()}
+  >
     {children}
   </TouchableWithoutFeedback>
 );
@@ -35,13 +37,13 @@ function Registration({ navigation }) {
 
         {
           firstName: fname,
-        lastName: lname,
+          lastName: lname,
           username: username,
           password: password,
         }
       )
       .then((res) => {
-        alert("Successfully Created")
+        alert("Successfully Created");
         navigation.navigate("login");
       })
       .catch((err) => {
@@ -74,6 +76,7 @@ function Registration({ navigation }) {
               placeholderTextColor="orange"
               onChangeText={(text) => setFname(text)}
               value={fname}
+              autoFocus={true}
             />
           </View>
           <View style={styles.inputView}>
@@ -134,7 +137,7 @@ function Registration({ navigation }) {
             </TouchableOpacity>
           </View>
         </View>
-        <StatusBar barStyle="light-content" backgroundColor="#4D4F79" />
+        <StatusBar barStyle="light-content" backgroundColor="black" />
       </KeyboardAvoidingView>
     </DismissKeyboard>
   );

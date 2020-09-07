@@ -93,7 +93,7 @@ function Login({ navigation }) {
               color: "white",
             }}
             onChangeText={(text) => onChangeText(text)}
-            // autoFocus={true}
+            autoFocus={true}
             // clearTextOnFocus={true}
             // defaultValue="shubham"
             // editable={false}
